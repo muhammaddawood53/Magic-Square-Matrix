@@ -55,7 +55,7 @@ public class Final_Magic_Matrix {
         }
 
         //Now print the Answer if true print magic matrix otherwise not magic..
-        if(ismagic=true) System.out.println("MAGIC MATRIX");
+        if(ismagic==true) System.out.println("MAGIC MATRIX");
         else System.out.println("NOT MAGIC MATRIX !!!"); 
 
 
