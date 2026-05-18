@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Final_Magic_Matrix {
     public static void main(String[] args) {
         Scanner input= new Scanner(System.in);
-        System.out.print("We make the Square matrix so please enter number of row or coloumn: ");
+        System.out.print("We make the Square Matrix so, please Enter Number of Row or Coloumn: ");
         int row=input.nextInt();
 
         int[][] matrix=new int[row][row];
