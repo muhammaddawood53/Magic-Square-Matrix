@@ -1,72 +1,80 @@
 import java.util.Scanner;
 public class Final_Magic_Matrix {
     public static void main(String[] args) {
-        Scanner input= new Scanner(System.in);
-        System.out.print("We make the Square Matrix so, please Enter Number of Row or Coloumn: ");
-        int row=input.nextInt();
+        Scanner input=new Scanner(System.in);
 
-        int[][] matrix=new int[row][row];
+        System.out.println("\n------------ CHECK THE MATIX IS MAGIC MATRIX ---------------\n");
+        System.out.print("Enter the Number of Row or Coloumn: ");
+        int n=input.nextInt();
 
-        //Store the Elements in matrix.
-        System.out.println("Enter the "+row*row+" Elements: ");
-        for(int i=0; i<row; i++){
-            for(int j=0; j<row; j++){
+        int[][] matrix=new int[n][n];
+
+        System.out.println("Enter the "+n*n+" elements values: ");
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
                 matrix[i][j]=input.nextInt();
-            }   
+            }}
+        boolean isMagic=true;
+            
+        // Now take the sum of first row and compare the it with others to check the magic matrix condition.
+        int FirstRowSum=0;
+        for(int j=0; j<n;j++){
+            FirstRowSum+=matrix[0][j];
         }
         
-        boolean ismagic=false;
 
-        //check the sum of first row and then compare all the sum to it.
-        int targetedSum=0;
-        for(int j=0; j<row; j++){
-            targetedSum+=matrix[0][j];
-        }
-
-        // check the sum of the rows.
-        int rowSum;
-        for(int i=0; i<row; i++){
-            rowSum=0;
-            for(int j=0; j<row; j++){
-                rowSum+=matrix[i][j];
+        //Check rows.
+        int sumOfRow=0;
+        for(int i=0; i<n; i++){
+            sumOfRow=0;
+            for(int j=0; j<n; j++){
+                sumOfRow+=matrix[i][j];
             }
-            if(targetedSum==rowSum) ismagic=true;
-            else break;
-                
-                
-            
-        }
-        //check for the coloumn.
-        for(int i=0; i<row; i++){
-            int colSum=0;
-            for(int j=0; j<row; j++){
-                if(targetedSum==colSum) ismagic=true;
-                else break;
-               
+            if(FirstRowSum!=sumOfRow){
+                isMagic=false;
+                break;
             }
         }
-        //Now Check for the Diagonal.
-        for(int i=0; i<row; i++){
-            int diagSum=0;
-            diagSum+=matrix[i][i];
-            if(targetedSum==diagSum) ismagic=true;
-            else break;
-            
+
+
+        //Check coloumn.
+        int sumOfCol=0;
+        for(int i=0; i<n; i++){
+            sumOfCol=0;
+            for(int j=0; j<n; j++){
+                sumOfCol+=matrix[j][i];
+            }
+            if(sumOfCol!=FirstRowSum){
+                isMagic=false;
+                break;
+                }
         }
 
-        //Now print the Answer if true print magic matrix otherwise not magic..
-        if(ismagic==true) System.out.println("MAGIC MATRIX");
-        else System.out.println("NOT MAGIC MATRIX !!!"); 
 
-
+        //Check Left Diognal.
+        int sumOfLDia=0;
+        for(int i=0; i<n; i++){
+            sumOfLDia+=matrix[i][i];
+        }
+        if(sumOfLDia!=FirstRowSum){
+            isMagic=false;
+        }
+        
+        //Now Check Right Diagonal.
+        int sumOfRDia=0;
+        for(int i=0; i<n; i++){
+            sumOfRDia+=matrix[i][n-1-i];
+        }
+        if(sumOfRDia!=FirstRowSum){
+            isMagic=false;
+        }
         
 
-
-    
-    
-    
-    
-    
-    
-    }
+        //Now print the final Answer. 
+        if(isMagic){
+        System.out.println("\n------ MAGIC SQUARE MATRIX :) --------");
+        }else{
+            System.out.println("\n------ NOT MAGIC SQUARE MATRIX !!! --------");
+        }
+}
 }
